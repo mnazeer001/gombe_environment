@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sign in to the administration console of the Gombe State Ministry of Environment & Forest Resources.">
+  <meta name="theme-color" content="#0b6b3a">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Sign in · Admin Console | Ministry of Environment &amp; Forest Resources, Gombe State</title>
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b6b3a'/%3E%3Cpath d='M32 52V28' stroke='%23f0c14b' stroke-width='4'/%3E%3Cpath d='M32 34c-9 0-15-6-15-13 5 2 11 2.5 15 5.5 4-3 10-3.5 15-5.5 0 7-6 13-15 13z' fill='%23e7f4ec'/%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#loginForm">Skip to sign-in form</a>
+
+  <div class="login-page">
+    <div class="login-bg" aria-hidden="true"></div>
+
+    <div class="login-wrap">
+      <!-- ---------- introduction ---------- -->
+      <div class="login-intro">
+        <div id="crestLeft"></div>
+        <div class="sub">Gombe State Government of Nigeria</div>
+        <h1>Ministry of Environment &amp; Forest Resources</h1>
+        <p>The official administration console for the Ministry website — manage news, pages, projects,
+          departments, services, media, public enquiries, incident reports, permits, events and users
+          from one responsive dashboard.</p>
+
+        <ul class="login-feats">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 6v6c0 5.2 3.8 9.4 9 10 5.2-.6 9-4.8 9-10V6z"/></svg>
+            <span><b>Role-based access</b> — five roles from Super Admin to read-only Partner.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4z" fill="none"/><path d="M12 2 3 6v6c0 5.2 3.8 9.4 9 10 5.2-.6 9-4.8 9-10V6z"/></svg>
+            <span><b>Audit trail</b> — every create, edit, publish and decision is logged.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 6v6c0 5.2 3.8 9.4 9 10 5.2-.6 9-4.8 9-10V6z"/></svg>
+            <span><b>Works offline</b> — plain HTML, CSS and JavaScript, no frameworks or server.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ---------- sign-in card ---------- -->
+      <div class="login-card">
+        <div class="lc-h">
+          <div id="crestRight"></div>
+          <h2>Admin Console</h2>
+          <p>Sign in to manage the Ministry website</p>
+        </div>
+
+        <div class="alert" id="alert" role="alert" aria-live="assertive" hidden></div>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <label for="email">Official email address <span class="req">*</span></label>
+            <input id="email" name="email" type="email" autocomplete="username" required
+              placeholder="name@environment.gombestate.gov.ng">
+            <span class="err">Enter a valid email address.</span>
+          </div>
+
+          <div class="field">
+            <label for="password">Password <span class="req">*</span></label>
+            <div class="pw-wrap">
+              <input id="password" name="password" type="password" autocomplete="current-password" required
+                placeholder="Enter your password">
+              <button class="pw-toggle" type="button" id="pwToggle" aria-label="Show password" aria-pressed="false">
+                <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                </svg>
+              </button>
+            </div>
+            <span class="err">Enter your password.</span>
+          </div>
+
+          <div class="field">
+            <span class="lbl">Sign in as</span>
+            <div class="role-pick" id="rolePick" role="radiogroup" aria-label="Demo account"></div>
+            <span class="hint">Choose a demonstration account to see how each role's permissions change the console.</span>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" id="remember" checked>
+            <span>Keep me signed in on this device</span>
+          </label>
+
+          <button class="btn btn-primary btn-lg btn-block" type="submit" id="submitBtn" style="margin-top:.6rem">
+            <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
+            </svg>
+            <span>Sign in to console</span>
+          </button>
+        </form>
+
+        <div class="demo-box">
+          <b>Demonstration credentials</b> — this is a front-end only console, so any password of
+          six characters or more is accepted for the accounts below.
+          <div class="cred"><span id="credText">amina.bello@environment.gombestate.gov.ng</span>
+            <button type="button" id="fillBtn">Use this</button></div>
+        </div>
+
+        <div class="login-foot">
+          <a href="../index.html">&larr; Back to the public website</a>
+          <span> · </span>
+          <a href="#" id="helpLink">Need help?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/store.js"></script>
+  <script>
+    (function () {
+      'use strict';
+      var S = window.AdminStore;
+      S.init();
+
+      /* crests */
+      var crest = '<svg class="crest" viewBox="0 0 64 64" role="img" aria-label="Gombe State coat of arms">' +
+        '<defs><linearGradient id="lcg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e9d5c"/><stop offset="1" stop-color="#06391f"/></linearGradient></defs>' +
+        '<path d="M32 2 60 11v22c0 15-11.7 25-28 29C15.7 58 4 48 4 33V11z" fill="url(#lcg)" stroke="#d9a520" stroke-width="2.5"/>' +
+        '<path d="M32 50V27" stroke="#f0c14b" stroke-width="3.4" stroke-linecap="round"/>' +
+        '<path d="M32 33c-8 0-13.5-5.4-13.5-11.7 4.5 1.8 9.9 2.3 13.5 5 3.6-2.7 9-3.2 13.5-5C45.5 27.6 40 33 32 33z" fill="#e7f4ec"/>' +
+        '<circle cx="32" cy="16" r="3.4" fill="#f0c14b"/></svg>';
+      document.getElementById('crestLeft').innerHTML = crest;
+      document.getElementById('crestRight').innerHTML = crest;
+
+      /* already signed in? go straight to the console */
+      var sess = S.session.get();
+      if (sess && sess.userId && S.find('users', sess.userId)) {
+        location.replace('index.html');
+        return;
+      }
+
+      /* theme follows the saved console preference */
+      try {
+        var p = JSON.parse(localStorage.getItem('gmbeAdminPrefs.v1') || '{}');
+        if (p.theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+      } catch (e) { /* ignore */ }
+
+      /* demo account picker */
+      var demos = S.list('users').filter(function (u) { return u.status !== 'Suspended'; }).slice(0, 5);
+      var pick = document.getElementById('rolePick');
+      var chosen = demos[0];
+      pick.innerHTML = demos.map(function (u, i) {
+        return '<label class="' + (i === 0 ? 'on' : '') + '" data-id="' + u.id + '">' +
+          '<input type="radio" name="demo" value="' + u.id + '"' + (i === 0 ? ' checked' : '') + '>' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>' +
+          '<span class="rn">' + u.role + '</span><span class="rd">' + u.name.split(' ')[0] + '</span></label>';
+      }).join('');
+
+      function setChosen(id) {
+        chosen = S.find('users', id) || demos[0];
+        document.getElementById('credText').textContent = chosen.email;
+        Array.prototype.forEach.call(pick.querySelectorAll('label'), function (l) {
+          l.classList.toggle('on', l.dataset.id === id);
+        });
+      }
+      pick.addEventListener('click', function (e) {
+        var l = e.target.closest('label'); if (l) setChosen(l.dataset.id);
+      });
+      pick.addEventListener('change', function (e) {
+        if (e.target.name === 'demo') setChosen(e.target.value);
+      });
+
+      document.getElementById('fillBtn').addEventListener('click', function () {
+        document.getElementById('email').value = chosen.email;
+        document.getElementById('password').value = 'gombe2026';
+        document.getElementById('password').focus();
+      });
+
+      /* password visibility */
+      var pw = document.getElementById('password'), tog = document.getElementById('pwToggle');
+      tog.addEventListener('click', function () {
+        var show = pw.type === 'password';
+        pw.type = show ? 'text' : 'password';
+        tog.setAttribute('aria-pressed', String(show));
+        tog.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+      });
+
+      /* alert */
+      var alertBox = document.getElementById('alert');
+      function fail(msg) {
+        alertBox.hidden = false;
+        alertBox.className = 'alert note danger';
+        alertBox.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          '<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>' +
+          '<div><b>Sign-in failed.</b> ' + msg + '</div>';
+        alertBox.style.marginBottom = '.9rem';
+      }
+      function clearFail() { alertBox.hidden = true; alertBox.innerHTML = ''; }
+
+      /* submit */
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        clearFail();
+        var emailEl = document.getElementById('email'), passEl = document.getElementById('password');
+        var ok = true;
+        [[emailEl, /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailEl.value.trim())],
+        [passEl, passEl.value.trim().length >= 6]].forEach(function (pair) {
+          pair[0].closest('.field').classList.toggle('invalid', !pair[1]);
+          if (!pair[1]) ok = false;
+        });
+        if (!ok) { fail('Check the highlighted fields. The demo password is any six characters or more.'); return; }
+
+        var email = emailEl.value.trim().toLowerCase();
+        var user = null;
+        S.list('users').forEach(function (u) { if (u.email.toLowerCase() === email) user = u; });
+        if (!user) user = chosen;              /* demo convenience: fall back to the selected account */
+
+        if (user.status === 'Suspended') {
+          fail('This account has been suspended. Contact a Super Admin in the Admin &amp; Finance directorate.');
+          return;
+        }
+
+        var btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span><span>Signing in…</span>';
+
+        setTimeout(function () {
+          user.lastLogin = new Date().toISOString();
+          S.data.currentUser = user.id;
+          S.save();
+          S.log('login', 'Session', user.name + ' (' + user.role + ') signed in to the console', 'ok');
+          S.session.set({ userId: user.id, at: new Date().toISOString(), remember: document.getElementById('remember').checked },
+            document.getElementById('remember').checked);
+          location.href = 'index.html';
+        }, 620);
+      });
+
+      /* help */
+      document.getElementById('helpLink').addEventListener('click', function (e) {
+        e.preventDefault();
+        alertBox.hidden = false;
+        alertBox.className = 'alert note';
+        alertBox.style.marginBottom = '.9rem';
+        alertBox.innerHTML = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+          '<circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>' +
+          '<div><b>Demonstration console.</b> Pick an account above, press <b>Use this</b> to fill the form, then sign in. ' +
+          'Passwords are not verified because there is no server — all data is stored in this browser and can be exported from ' +
+          '<em>Settings → Data &amp; backup</em>. For production use, connect this console to an authenticated backend.</div>';
+      });
+
+      /* prefill the first demo account for convenience */
+      setChosen(demos[0].id);
+    })();
+  </script>
+</body>
+
+</html>

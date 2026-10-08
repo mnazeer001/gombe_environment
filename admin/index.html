@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Administration console for the Gombe State Ministry of Environment & Forest Resources website.">
+  <meta name="theme-color" content="#0b6b3a">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin Console | Ministry of Environment &amp; Forest Resources, Gombe State</title>
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b6b3a'/%3E%3Cpath d='M32 52V28' stroke='%23f0c14b' stroke-width='4'/%3E%3Cpath d='M32 34c-9 0-15-6-15-13 5 2 11 2.5 15 5.5 4-3 10-3.5 15-5.5 0 7-6 13-15 13z' fill='%23e7f4ec'/%3E%3C/svg%3E">
+
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body>
+  <!-- The console shell (sidebar, topbar, views) is rendered by app.js.
+       The markup below is a boot placeholder and a no-JavaScript fallback. -->
+  <noscript>
+    <div style="max-width:640px;margin:14vh auto;padding:1.6rem;font-family:'Segoe UI',system-ui,sans-serif;
+                border:1px solid #dfe8e4;border-radius:18px;background:#fff;color:#41524c">
+      <h1 style="color:#06391f;font-size:1.4rem;margin:0 0 .5rem">JavaScript is required</h1>
+      <p style="margin:0 0 1rem">
+        The Ministry of Environment &amp; Forest Resources administration console is a JavaScript
+        application. Please enable JavaScript in your browser, or return to the
+        <a href="../index.html" style="color:#0b6b3a;font-weight:700">public website</a>.
+      </p>
+    </div>
+  </noscript>
+
+  <div id="boot"
+    style="position:fixed;inset:0;display:grid;place-items:center;background:#f2f6f4;z-index:999;
+           font-family:'Segoe UI',system-ui,sans-serif;color:#6b7f78;text-align:center;padding:1.5rem">
+    <div>
+      <svg width="58" height="58" viewBox="0 0 64 64" role="img" aria-label="Loading"
+        style="animation:bootspin 2.6s ease-in-out infinite;margin:0 auto .9rem;display:block">
+        <defs>
+          <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1e9d5c" />
+            <stop offset="1" stop-color="#06391f" />
+          </linearGradient>
+        </defs>
+        <path d="M32 2 60 11v22c0 15-11.7 25-28 29C15.7 58 4 48 4 33V11z" fill="url(#bg1)" stroke="#d9a520"
+          stroke-width="2.5" />
+        <path d="M32 50V27" stroke="#f0c14b" stroke-width="3.4" stroke-linecap="round" />
+        <path d="M32 33c-8 0-13.5-5.4-13.5-11.7 4.5 1.8 9.9 2.3 13.5 5 3.6-2.7 9-3.2 13.5-5C45.5 27.6 40 33 32 33z"
+          fill="#e7f4ec" />
+        <circle cx="32" cy="16" r="3.4" fill="#f0c14b" />
+      </svg>
+      <strong style="display:block;color:#0a4f2c;font-size:1rem">Loading the admin console…</strong>
+      <span style="font-size:.82rem">Ministry of Environment &amp; Forest Resources, Gombe State</span>
+    </div>
+    <style>
+      @keyframes bootspin {
+        0%, 100% { transform: rotate(-4deg) scale(1); }
+        50% { transform: rotate(4deg) scale(1.05); }
+      }
+    </style>
+  </div>
+
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/ui.js"></script>
+  <script src="assets/js/crud.js"></script>
+  <script src="assets/js/views.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    /* remove the boot overlay once the shell has been rendered */
+    (function () {
+      var tries = 0;
+      var t = setInterval(function () {
+        tries++;
+        var shell = document.querySelector('.app');
+        if (shell || tries > 60) {
+          clearInterval(t);
+          var b = document.getElementById('boot');
+          if (b) {
+            b.style.transition = 'opacity .3s';
+            b.style.opacity = '0';
+            setTimeout(function () { b.remove(); }, 320);
+          }
+        }
+      }, 60);
+    })();
+  </script>
+</body>
+
+</html>
