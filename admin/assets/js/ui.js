@@ -855,6 +855,32 @@
     setTimeout(function () { URL.revokeObjectURL(url); a.remove(); }, 400);
   }
 
+  /* Copy text to the clipboard without any external service. Uses the async
+     Clipboard API when available and falls back to a hidden textarea +
+     execCommand, which still works on plain http and older browsers. */
+  function copyText(text, okMsg) {
+    function fallback() {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand && document.execCommand('copy');
+        ta.remove();
+        toast(ok ? (okMsg || 'Copied to the clipboard.') : 'Select the text and copy it manually.', 'Copy', ok ? 'ok' : 'warn');
+      } catch (e) {
+        toast('Copying is blocked in this browser.', 'Copy', 'warn');
+      }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () {
+        toast(okMsg || 'Copied to the clipboard.', 'Copy', 'ok');
+      }, fallback);
+    } else { fallback(); }
+  }
+
   /* =====================================================================
      8. CHARTS (pure SVG)
      ===================================================================== */
@@ -1076,7 +1102,7 @@
     icon: icon, crest: CREST, F: F, palette: palette,
     toast: toast, modal: modal, confirm: confirmDialog, drawer: drawer, closeTop: closeTop,
     field: field, form: form, wireFields: wireFields, readForm: readForm, validate: validate,
-    dataTable: dataTable, toCSV: toCSV, download: download,
+    dataTable: dataTable, toCSV: toCSV, download: download, copyText: copyText,
     charts: { line: lineChart, bar: barChart, donut: donutChart, ring: ring, spark: spark, hbars: hbars, animateBars: animateBars },
     statusBadge: statusBadge, priorityBadge: priorityBadge, avatar: avatarHtml, thumb: thumb, act: actBtn
   };

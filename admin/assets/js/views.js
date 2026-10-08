@@ -1316,10 +1316,15 @@
           '<div class="status-flow mb-1">' + flow.map(function (s, i) {
             return '<span class="sf ' + (i <= cur ? 'on' : '') + '">' + icon(i <= cur ? 'checkCircle' : 'clock', 13) + F.esc(s) + '</span>' + (i < flow.length - 1 ? '<span class="sf-line"></span>' : '');
           }).join('') + '</div>' +
-          (r.lat && r.lng ? '<a class="card card-pad mb-1 flex gap aic" style="text-decoration:none" target="_blank" rel="noopener" href="https://www.openstreetmap.org/?mlat=' + r.lat + '&mlon=' + r.lng + '#map=15/' + r.lat + '/' + r.lng + '">' +
+          /* Location card. Deliberately NOT an external map link: this console is pure
+             front-end HTML/CSS/JS and must not request or reference any third-party
+             service, so coordinates are shown (and copyable) locally instead. */
+          (r.lat && r.lng ? '<div class="card card-pad mb-1 flex gap aic">' +
             '<span class="sm-ico" style="width:34px;height:34px;border-radius:8px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)">' + icon('pin', 17) + '</span>' +
-            '<span style="flex:1"><b style="color:var(--ink)">' + F.esc(r.location) + '</b><div class="text-xs text-muted">' + r.lat.toFixed(4) + ', ' + r.lng.toFixed(4) + ' — open in maps</div></span>' +
-            icon('external', 15) + '</a>' : '<div class="note mb-1">' + icon('pin', 17) + '<div>' + F.esc(r.location) + '</div></div>') +
+            '<span style="flex:1"><b style="color:var(--ink)">' + F.esc(r.location) + '</b>' +
+            '<div class="text-xs text-muted">Coordinates ' + r.lat.toFixed(4) + ', ' + r.lng.toFixed(4) + '</div></span>' +
+            '<button class="btn btn-outline btn-sm" type="button" data-copycoords="' + r.lat.toFixed(6) + ', ' + r.lng.toFixed(6) + '">' + icon('copy', 14) + 'Copy</button>' +
+            '</div>' : '<div class="note mb-1">' + icon('pin', 17) + '<div>' + F.esc(r.location) + '</div></div>') +
           C.kv([['Severity', r.severity, 'raw'], ['Current status', r.status, 'raw'], ['Reported via', r.source], ['Assigned officer', r.officer || 'Unassigned'], ['Raised', F.dateTime(r.raised)], ['Last update', F.dateTime(r.updated)]]) +
           '<hr class="divider"><h4 style="font-size:.86rem;margin-bottom:.4rem">Investigation notes</h4>' +
           '<p class="text-sm" style="white-space:pre-line">' + F.esc(r.note || 'No notes recorded yet.') + '</p>',
@@ -1327,6 +1332,10 @@
           '<button class="btn btn-outline" data-adv>' + icon('arrowRight', 15) + 'Advance status</button>' +
           '<button class="btn btn-primary" data-ed>' + icon('edit', 15) + 'Edit report</button>',
         onOpen: function (api) {
+          var cp = api.el.querySelector('[data-copycoords]');
+          if (cp) cp.addEventListener('click', function () {
+            UI.copyText(cp.getAttribute('data-copycoords'), 'Coordinates copied.');
+          });
           api.el.querySelector('[data-ed]').addEventListener('click', function () {
             api.close();
             C.editor({ title: 'Edit incident report', subtitle: F.esc(r.ref), icon: 'alert', size: 'md', item: r, fields: V.reports.fields(r), onSave: function (v, it) { v.lat = parseFloat(v.lat) || 0; v.lng = parseFloat(v.lng) || 0; v.updated = new Date().toISOString(); S.update('reports', it.id, v); UI.toast('Report updated.', 'Saved', 'ok'); paint(); } });
